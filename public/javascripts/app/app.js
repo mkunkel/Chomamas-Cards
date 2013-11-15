@@ -65,6 +65,11 @@ function initializeSocketIO(){
   socket.on('renderGame', socketRenderGame);
   socket.on('allSubmissions', socketRenderAllSubmissions);
   socket.on('newTurn', socketRenderGame);
+  socket.on('winner', socketGameOver);
+}
+
+function socketGameOver(data){
+  //alert(player.name + ' is the winner. Chomama says the rest of yall suck.');
 }
 
 function socketRenderAllSubmissions(data){
