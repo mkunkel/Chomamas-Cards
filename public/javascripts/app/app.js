@@ -26,13 +26,13 @@ function clickStart() {
   socket.emit('startgame', {player: player, game: game});
 }
 
-function displayCard(number) {
-  var cardUrl = '../images/cards.png';
-  // get card size
-  var imageWidth = 950;
-  var imageHeight = 392;
-  var columns = 13;
-  var rows = 4;
+function displayCard(number, cardUrl, imageWidth, imageHeight, columns, rows) {
+  // var cardUrl = '../images/cards.png';
+  // // get card size
+  // var imageWidth = 950;
+  // var imageHeight = 392;
+  // var columns = 13;
+  // var rows = 4;
   var cardWidth = Math.floor(imageWidth / columns);
   var cardHeight = Math.floor(imageHeight / rows);
   number = number - 1;
@@ -44,8 +44,8 @@ function displayCard(number) {
   var leftPosition = imageWidth - Math.floor((cardColumn * cardWidth));
   var topPosition = imageHeight - (Math.floor(cardRow * cardHeight));
 
-  console.log('top:' + Math.floor((cardRow * cardHeight)) + ' left:' + Math.floor((cardColumn * cardWidth)));
-  $('#card')
+
+  return $('div')
     .css('background-image', 'url("' + cardUrl + '")')
     .css('height', cardHeight)
     .css('width', cardWidth)
@@ -70,10 +70,14 @@ function socketConnected(data){
 
 function socketRenderGame(data) {
   // call displayCard function for jquery black
-  //does the table auto update?
+  var $black = displayCard(number, '../images/blackcards.png', imageWidth, imageHeight, columns, rows);
+  $black.attr('id', 'blackCard');
+  $('#black').empty().append($black);
+
+  $('#whites').empty
   for(var i = 0; i < 7; i++){
-    var $white = $('<div class="white"></div>');
-    $white.addClass('float');
+    var $white = displayCard(number, '..images/whitecards.png', imageWidth, imageHeight, columns, rows);
+    $white.addClass('white').addClass('float').data('index', number);
     $('#whites').append($white);
   }
 }
