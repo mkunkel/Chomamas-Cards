@@ -11,4 +11,31 @@ block content
     .small-6.columns
   .row
     .small-12.columns
-      #card
+      #game
+        .row
+          .small-3.columns
+            #black
+          .small-6.columns
+            #submissions
+              for each player in game.players
+                .s.float
+          .small-3.columns
+            table#stats
+              thead
+                tr: th Chomama's stats
+              tbody
+                for each player in game.players
+                  tr
+                    td player.name
+                    td player.score
+        .row
+          .small-12.columns
+            #whites
+              #w1.float
+              #w2.float
+              #w3.float
+              #w4.float
+              #w5.float
+              #w6.float
+              #w7.float
+
