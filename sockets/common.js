@@ -8,7 +8,19 @@ exports.connection = function(socket){
   socket.emit('connected', {status: 'connected'});
   socket.on('disconnect', socketDisconnect);
   socket.on('startgame', socketStartGame);
+  socket.on('whiteSubmission', socketReceiveSubmission);
 };
+
+function socketReceiveSubmission(data){
+  console.log(data);
+  //game.submissions.push(submission);
+  //game.player.whites.splice(card index, 1);
+  //game.player.whiteCards.push(game.whiteCards.pop);
+  //if(game.submission.length === players.length - 1){
+    //socket.emit(allSubmissions, game)
+  }
+
+}
 
 function socketStartGame(data){
   var storage = {};
