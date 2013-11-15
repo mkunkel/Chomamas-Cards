@@ -47,12 +47,14 @@ function displayCard(number, cardUrl, imageWidth, imageHeight, columns, rows) {
   var topPosition = imageHeight - (Math.floor(cardRow * cardHeight));
 
 
-  return $('div')
+  var $div = $('div')
     .css('background-image', 'url("' + cardUrl + '")')
     .css('height', cardHeight)
     .css('width', cardWidth)
     .css('background-position',  leftPosition + 'px ' + topPosition + 'px')
     .data('index', number);
+
+  return $div;
 }
 
 
@@ -96,14 +98,19 @@ function socketConnected(data){
 function socketRenderGame(data) {
   // call displayCard function for jquery black
   game = data.game;
-  var $black = displayCard(number, '../images/blackcards.jpg', 2866, 716, 20, 5);
+  var $black = displayCard(1, '../images/blackcards.jpg', 2866, 716, 20, 5);
   $black.attr('id', 'blackCard');
-  $('#black').empty().append($black);
+  $('#black').empty();
+  $('#black').append($black);
 
+  var cards = _.where(game.players, {'name': player});
+  console.log(cards);
+  cards = cards.whiteCards;
   $('#whites').empty
   for(var i = 0; i < 7; i++){
-    var $white = displayCard(number, '..images/whitecards.jpg', 2292, 3578, 16, 25);
-    $white.addClass('white').addClass('float').data('index', number);
+
+    var $white = displayCard(cards[i], '..images/whitecards.jpg', 2292, 3578, 16, 25);
+    $white.addClass('white').addClass('float').data('index', cards[i]);
     $('#whites').append($white);
   }
 }

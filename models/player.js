@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Game = mongoose.model('Game');
 var __ = require('lodash');
 
 function randomize() {
@@ -14,6 +15,10 @@ var Player = mongoose.Schema({
 });
 
 Player.pre('save', function(next){
+  if(!this.whiteCards.length) {
+    // populate hand
+    // Game.where()
+  }
   next();
 });
 
