@@ -70,13 +70,13 @@ function socketConnected(data){
 
 function socketRenderGame(data) {
   // call displayCard function for jquery black
-  var $black = displayCard(number, '../images/blackcards.jpg', imageWidth, imageHeight, columns, rows);
+  var $black = displayCard(number, '../images/blackcards.jpg', 2866, 716, 20, 5);
   $black.attr('id', 'blackCard');
   $('#black').empty().append($black);
 
   $('#whites').empty
   for(var i = 0; i < 7; i++){
-    var $white = displayCard(number, '..images/whitecards.jpg', imageWidth, imageHeight, columns, rows);
+    var $white = displayCard(number, '..images/whitecards.jpg', 2292, 3578, 16, 25);
     $white.addClass('white').addClass('float').data('index', number);
     $('#whites').append($white);
   }
