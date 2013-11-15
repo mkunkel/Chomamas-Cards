@@ -11,12 +11,14 @@ function initialize(){
   $(document).foundation();
   initializeSocketIO();
   $('#start').on('click', clickStart);
-  $('#whites').on('click', 'white', clickWhite);
+  $('#whites').on('click', '.white', clickWhite);
+  $('#submissions').on('click', '.submission', clickSubmission);
 }
 
 function findPlayer(){
   return _.find(players, function(p){return p.name === player;});
 }
+
 
 function clickStart() {
   player = getValue('#player');
@@ -61,7 +63,25 @@ function initializeSocketIO(){
   socket = io.connect(url);
   socket.on('connected', socketConnected);
   socket.on('renderGame', socketRenderGame);
+  socket.on('allSubmissions', socketRenderAllSubmissions);
 
+}
+
+function socketRenderAllSubmissions(data){
+  var $black = displayCard(number, '../images/blackcards.jpg', imageWidth, imageHeight, columns, rows);
+  $black.attr('id', 'blackCard');
+  $('#black').empty().append($black);
+
+  for(var i = 0; i < 7; i++){
+    var $white = displayCard(number, '..images/whitecards.jpg', imageWidth, imageHeight, columns, rows);
+    $white.addClass('white').addClass('float').data('index', number);
+    $('#whites').append($white);
+
+  for(var i = 0; i < game.submissions.length; i++){
+    var $submission = displayCard(number, '..images/whitecards.jpg', imageWidth, imageHeight, columns, rows);
+    $submission.addClass('submission').addClass('float').data('index', number);
+    $('#submissions').append($submission);
+  }
 }
 
 function socketConnected(data){
@@ -89,5 +109,16 @@ function clickWhite{
     var submission = $(this).data('index');
     socket.emit('whiteSubmission', {game: game, player: player, submission: submission});
     $('.white').hide();
+  };
+}
+
+//MIKE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+function clickSubmission(){
+  if(!game.player.isReader){
+      alert('you are NOT the reader, stupid!');
+    }else{
+      var winner = $(this).data('index');
+      socket.emit('winnerCard', {game: game, player: player, winnerCard: winnerCard});
+      $('.submission').hide();
   };
 }
