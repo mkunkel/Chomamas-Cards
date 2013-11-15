@@ -90,6 +90,7 @@ function socketConnected(data){
 
 function socketRenderGame(data) {
   // call displayCard function for jquery black
+  game = data.game;
   var $black = displayCard(number, '../images/blackcards.jpg', 2866, 716, 20, 5);
   $black.attr('id', 'blackCard');
   $('#black').empty().append($black);
@@ -103,7 +104,7 @@ function socketRenderGame(data) {
 }
 
 function clickWhite{
-  if(game.player.isReader){
+  if(game.reader.name === player){
     alert('you are the reader, stupid!');
   }else{
     var submission = $(this).data('index');
@@ -113,7 +114,7 @@ function clickWhite{
 }
 
 function clickSubmission(){
-  if(!game.player.isReader){
+  if(game.reader.name !== player){
       alert('you are NOT the reader, stupid!');
     }else{
       var winner = $(this).data('index');
