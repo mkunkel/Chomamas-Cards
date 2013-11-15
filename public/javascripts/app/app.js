@@ -4,7 +4,6 @@ $(document).ready(initialize);
 
 var socket;
 var player;
-var color;
 var game;
 var players = [];
 
@@ -21,12 +20,10 @@ function findPlayer(){
 
 function clickStart() {
   player = getValue('#player');
-  color = getValue('#color');
   game = getValue('#name');
-  $('#currentPlayer').text(player).css('background-color', color);
-  // $('#form').hide();
-  $('#board').show();
-  socket.emit('startgame', {player: player, color: color, game: game});
+  $('#form').remove();
+  // $('#game').show();
+  socket.emit('startgame', {player: player, game: game});
 }
 
 function displayCard(number) {
@@ -63,7 +60,7 @@ function initializeSocketIO(){
 
   socket = io.connect(url);
   socket.on('connected', socketConnected);
-  socket.on('playerjoined', socketPlayerJoined);
+  socket.on('renderGame', socketRenderGame);
 
 }
 
@@ -71,6 +68,6 @@ function socketConnected(data){
   console.log(data);
 }
 
-function socketPlayerJoined(data) {
+function socketRenderGame(data) {
 
 }
