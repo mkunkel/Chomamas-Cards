@@ -11,7 +11,7 @@ function initialize(){
   $(document).foundation();
   initializeSocketIO();
   $('#start').on('click', clickStart);
-
+  $('#whites').on('click', 'white', clickWhite);
 }
 
 function findPlayer(){
@@ -70,10 +70,20 @@ function socketConnected(data){
 
 function socketRenderGame(data) {
   // call displayCard function for jquery black
-
+  //does the table auto update?
   for(var i = 0; i < 7; i++){
     var $white = $('<div class="white"></div>');
     $white.addClass('float');
     $('#whites').append($white);
   }
+}
+
+function clickWhite{
+  if(game.player.isReader){
+    alert('you are the reader, stupid!');
+  }else{
+    var submission = $(this).data('index');
+    socket.emit('whiteSubmission', {game: game, player: player, submission: submission});
+    $('.white').hide();
+  };
 }
