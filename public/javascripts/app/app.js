@@ -100,7 +100,7 @@ function socketRenderGame(data) {
   $black.attr('id', 'blackCard');
   $('#black').empty().append($black);
 
-  $('#whites').empty
+  $('#whites').empty;
   for(var i = 0; i < 7; i++){
     var $white = displayCard(number, '..images/whitecards.jpg', 2292, 3578, 16, 25);
     $white.addClass('white').addClass('float').data('index', number);
