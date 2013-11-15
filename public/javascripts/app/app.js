@@ -31,16 +31,30 @@ function clickStart() {
 
 function displayCard(number) {
   var cardUrl = '../images/cards.png';
+  // get card size
   var imageWidth = 950;
   var imageHeight = 392;
   var columns = 13;
   var rows = 4;
-  var cardWidth = imageWidth / columns;
-  var cardHeight = imageHeight / rows;
+  var cardWidth = Math.floor(imageWidth / columns);
+  var cardHeight = Math.floor(imageHeight / rows);
+  number = number - 1;
 
+
+  // find card
+  var cardRow = Math.floor(number / columns);
+  var cardColumn = number % columns;
+  var leftPosition = imageWidth - Math.floor((cardColumn * cardWidth));
+  var topPosition = imageHeight - (Math.floor(cardRow * cardHeight));
+
+  console.log('top:' + Math.floor((cardRow * cardHeight)) + ' left:' + Math.floor((cardColumn * cardWidth)));
   $('#card')
-    .css('background-image', 'url("' + cardUrl + '")');
+    .css('background-image', 'url("' + cardUrl + '")')
+    .css('height', cardHeight)
+    .css('width', cardWidth + 1)
+    .css('background-position',  leftPosition + 'px ' + topPosition + 'px');
 }
+
 
 function initializeSocketIO(){
   var port = window.location.port ? window.location.port : '80';
