@@ -8,15 +8,13 @@ function randomize() {
 var Player = mongoose.Schema({
   name:      String,
   socketId:  String,
-  isDealer:  {type: Boolean, default: false},
-  createdAt: {type: Date, default: Date.now}
+  isReader:  {type: Boolean, default: false},
+  whiteCards: [Number],
+  blackCards: Number,
+  score:      {type: Number, default: 0}
 });
 
 Player.pre('save', function(next){
-  if(this.x < 0) {this.x = 0;}
-  if(this.x > 9) {this.x = 9;}
-  if(this.y < 0) {this.y = 0;}
-  if(this.y > 9) {this.y = 9;}
   next();
 });
 
