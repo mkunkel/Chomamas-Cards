@@ -13,12 +13,12 @@ block content
     .small-12.columns
       #game
         .row
-          .small-3.columns
-            #black
+          .small-3.columns#black
+            #blackCard
           .small-6.columns
             #submissions
               for each player in game.players
-                .s.float
+                .submission.float
           .small-3.columns
             table#stats
               thead
