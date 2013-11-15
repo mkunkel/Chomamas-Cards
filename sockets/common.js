@@ -13,13 +13,24 @@ exports.connection = function(socket){
 
 function socketReceiveSubmission(data){
   console.log(data);
-  //game.submissions.push(submission);
-  //game.player.whites.splice(card index, 1);
-  //game.player.whiteCards.push(game.whiteCards.pop);
-  //if(game.submission.length === players.length - 1){
-    //socket.emit(allSubmissions, game)
-  }
+  var storage = {};
+  var socket = this;
 
+  async.waterfall([
+    function(fn){m.findGame(data.game,fn);},
+    function(game,fn){storage.game=game;fn();},
+    function(fn){m.resetSubmissions(storage.game, fn);},
+    function(fn){m.findPlayer(data.player,fn);},
+    function(player,fn){storage.player=player;fn();},
+    function(fn){m.removeCard(storage.player, 'whiteCards', data.submission, fn);},
+    function(player,fn){storage.player=player;fn();},
+    //game.player.whites.splice(card index, 1);
+    function(fn){m.popCard(storage.game, 'whiteCards', fn);},
+    function(card, fn){m.pushCard(storage.player, 'whiteCards', card, fn);},
+    //game.player.whiteCards.push(game.whiteCards.pop);
+    function(game,fn){m.findGame(data.game,fn);},
+    function(game,fn){m.emitGame(io.sockets, game, fn);}
+  ]);
 }
 
 function socketStartGame(data){
