@@ -46,14 +46,14 @@ function displayCard(number, cardUrl, imageWidth, imageHeight, columns, rows) {
   var leftPosition = imageWidth - Math.floor((cardColumn * cardWidth));
   var topPosition = imageHeight - (Math.floor(cardRow * cardHeight));
 
-
-  var $div = $('div')
+  var $div = $('<div>')
     .css('background-image', 'url("' + cardUrl + '")')
     .css('height', cardHeight)
     .css('width', cardWidth)
     .css('background-position',  leftPosition + 'px ' + topPosition + 'px')
     .data('index', number);
 
+  console.log($div);
   return $div;
 }
 
@@ -75,20 +75,20 @@ function socketGameOver(data){
 }
 
 function socketRenderAllSubmissions(data){
-  var $black = displayCard(number, '../images/blackcards.jpg', imageWidth, imageHeight, columns, rows);
-  $black.attr('id', 'blackCard');
-  $('#black').empty().append($black);
+  // var $black = displayCard(number, '../images/blackcards.jpg', imageWidth, imageHeight, columns, rows);
+  // $black.attr('id', 'blackCard');
+  // $('#black').empty().append($black);
 
-  for(var i = 0; i < 7; i++){
-    var $white = displayCard(number, '..images/whitecards.jpg', imageWidth, imageHeight, columns, rows);
-    $white.addClass('white').addClass('float').data('index', number);
-    $('#whites').append($white);
-  }
-  for(var i = 0; i < game.submissions.length; i++){
-    var $submission = displayCard(number, '..images/whitecards.jpg', imageWidth, imageHeight, columns, rows);
-    $submission.addClass('submission').addClass('float').data('index', number);
-    $('#submissions').append($submission);
-  }
+  // for(var i = 0; i < 7; i++){
+  //   var $white = displayCard(number, '..images/whitecards.jpg', imageWidth, imageHeight, columns, rows);
+  //   $white.addClass('white').addClass('float').data('index', number);
+  //   $('#whites').append($white);
+  // }
+  // for(var i = 0; i < game.submissions.length; i++){
+  //   var $submission = displayCard(number, '..images/whitecards.jpg', imageWidth, imageHeight, columns, rows);
+  //   $submission.addClass('submission').addClass('float').data('index', number);
+  //   $('#submissions').append($submission);
+  // }
 }
 
 function socketConnected(data){
@@ -104,12 +104,13 @@ function socketRenderGame(data) {
   $('#black').append($black);
 
   var cards = _.where(game.players, {'name': player});
-  console.log(cards);
-  cards = cards.whiteCards;
+  // console.log(cards);
+  // debugger;
+  cards = cards[0].whiteCards;
   $('#whites').empty
   for(var i = 0; i < 7; i++){
-
-    var $white = displayCard(cards[i], '..images/whitecards.jpg', 2292, 3578, 16, 25);
+    console.log(cards[i]);
+    var $white = displayCard(cards[i], '../images/whitecards.jpg', 2292, 3578, 16, 25);
     $white.addClass('white').addClass('float').data('index', cards[i]);
     $('#whites').append($white);
   }

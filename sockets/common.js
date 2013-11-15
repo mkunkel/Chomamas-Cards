@@ -64,6 +64,7 @@ function socketStartGame(data){
     function(fn){m.findPlayer(data.player,fn);},
     function(player,fn){if(!player){m.newPlayer(data.player,data.color,fn);}else{fn(null,player);}},
     function(player,fn){m.resetPlayer(player,socket,fn);},
+    function(player,fn){m.populateHand(player,storage.game,fn);},
     function(player,fn){storage.player=player;fn();},
     function(fn){fn(null,__.any(storage.game.players,function(p){return p.id===storage.player.id;}));},
     function(isFound,fn){if(!isFound){m.attachPlayer(storage.game,storage.player,fn);}else{fn(null,storage.game);}},
