@@ -72,7 +72,7 @@ function socketRenderGame(data) {
   // call displayCard function for jquery black
 
   for(var i = 0; i < 7; i++){
-    var $white = $('<div class="w"></div>');
+    var $white = $('<div class="white"></div>');
     $white.addClass('float');
     $('#whites').append($white);
   }
