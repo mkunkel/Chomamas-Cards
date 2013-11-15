@@ -104,6 +104,7 @@ function socketRenderGame(data) {
   $('#black').append($black);
 
   var cards = _.where(game.players, {'name': player});
+
   // console.log(cards);
   // debugger;
   cards = cards[0].whiteCards;
