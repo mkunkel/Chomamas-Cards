@@ -32,7 +32,9 @@ Game.pre('save', function(next){
   }
 
   // set reader
-  this.reader = this.players[this.turn % this.players.length];
+  if(this.players.length) {
+    this.reader = this.players[this.turn % this.players.length];
+  }
 
   next();
 });
