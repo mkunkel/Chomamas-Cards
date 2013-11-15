@@ -52,7 +52,8 @@ function displayCard(number) {
     .css('background-image', 'url("' + cardUrl + '")')
     .css('height', cardHeight)
     .css('width', cardWidth)
-    .css('background-position',  leftPosition + 'px ' + topPosition + 'px');
+    .css('background-position',  leftPosition + 'px ' + topPosition + 'px')
+    .data('index', number);
 }
 
 
