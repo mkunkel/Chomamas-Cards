@@ -76,7 +76,7 @@ function socketRenderAllSubmissions(data){
     var $white = displayCard(number, '..images/whitecards.jpg', imageWidth, imageHeight, columns, rows);
     $white.addClass('white').addClass('float').data('index', number);
     $('#whites').append($white);
-
+  }
   for(var i = 0; i < game.submissions.length; i++){
     var $submission = displayCard(number, '..images/whitecards.jpg', imageWidth, imageHeight, columns, rows);
     $submission.addClass('submission').addClass('float').data('index', number);
@@ -103,7 +103,7 @@ function socketRenderGame(data) {
   }
 }
 
-function clickWhite{
+function clickWhite(){
   if(game.reader.name === player){
     alert('you are the reader, stupid!');
   }else{
