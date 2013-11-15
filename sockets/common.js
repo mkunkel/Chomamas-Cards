@@ -9,7 +9,22 @@ exports.connection = function(socket){
   socket.on('disconnect', socketDisconnect);
   socket.on('startgame', socketStartGame);
   socket.on('whiteSubmission', socketReceiveSubmission);
+  socket.on('winningCard', socketWinningCard);
 };
+
+function socketWinningCard(data){
+  //find winning player
+  //game.player.blackCards.push(winningCard);
+  //for(var i = 0; i < game.players.length; i++){
+      //if(game.player.blackCards.length === 5){
+      //  gameOver(game.player.name);
+      // } else {
+          //reset reader
+         // var blackCard = game.blackCards.pop();
+          //socket.emit('newTurn', {game:game, blackCard:blackCard});
+      // }
+    //}
+}
 
 function socketReceiveSubmission(data){
   console.log(data);

@@ -64,7 +64,7 @@ function initializeSocketIO(){
   socket.on('connected', socketConnected);
   socket.on('renderGame', socketRenderGame);
   socket.on('allSubmissions', socketRenderAllSubmissions);
-
+  socket.on('newTurn', socketRenderGame);
 }
 
 function socketRenderAllSubmissions(data){
@@ -116,8 +116,8 @@ function clickSubmission(){
   if(!game.player.isReader){
       alert('you are NOT the reader, stupid!');
     }else{
-      var winner = $(this).data('index');
-      socket.emit('winnerCard', {game: game, player: player, winnerCard: winnerCard});
+      var winnningCard = $(this).data('index');
+      socket.emit('winningCard', {game: game, player: player, winningCard: winningCard});
       $('.submission').hide();
   };
 }
