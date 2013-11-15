@@ -103,14 +103,10 @@ function socketRenderGame(data) {
   $('#black').empty();
   $('#black').append($black);
 
-<<<<<<< HEAD
-  $('#whites').empty;
-=======
   var cards = _.where(game.players, {'name': player});
   console.log(cards);
   cards = cards.whiteCards;
-  $('#whites').empty
->>>>>>> b98bda28e754f7af6481490ac9f462e9aa3e6ed1
+  $('#whites').empty;
   for(var i = 0; i < 7; i++){
 
     var $white = displayCard(cards[i], '..images/whitecards.jpg', 2292, 3578, 16, 25);
