@@ -1,7 +1,7 @@
 extends ../template/layout
 
 block content
-  .row 
+  .row
     .small-12.columns
       img(src='../images/logo.png').logo
   .row#form
@@ -10,17 +10,9 @@ block content
     .small-2.columns
       input#player(type= 'text', name= 'player', placeholder= 'player')
     .small-2.columns
-      input#color(type= 'text', name= 'color' class= 'color {required:false, hash: true}')
-    .small-2.columns
       button#start.small.expand Start
-    .small-4.columns
+    .small-6.columns
       h2#currentPlayer
-  table#board
-    tbody
-      - for (var y = 0; y < 10; ++y) {
-        tr
-        - for (var x = 0; x < 10; ++x) {
-        - var selector = y % 2 === 0 ? 'even' : 'odd';
-        td(data-x= x, data-y= y, class= selector)
-        - }
-      - }
+  .row
+    .small-12.columns
+      #card
