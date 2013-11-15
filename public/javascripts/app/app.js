@@ -69,7 +69,6 @@ function socketConnected(data){
 }
 
 function socketRenderGame(data) {
-  // call displayCard function for jquery black
   var $black = displayCard(number, '../images/blackcards.png', imageWidth, imageHeight, columns, rows);
   $black.attr('id', 'blackCard');
   $('#black').empty().append($black);
