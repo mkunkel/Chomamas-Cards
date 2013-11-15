@@ -112,7 +112,6 @@ function clickWhite{
   };
 }
 
-//MIKE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function clickSubmission(){
   if(!game.player.isReader){
       alert('you are NOT the reader, stupid!');
