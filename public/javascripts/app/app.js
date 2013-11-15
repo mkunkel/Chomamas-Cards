@@ -11,7 +11,7 @@ function initialize(){
   $(document).foundation();
   initializeSocketIO();
   $('#start').on('click', clickStart);
-
+  $('#whites').on('click', 'white', clickWhite);
 }
 
 function findPlayer(){
@@ -80,4 +80,14 @@ function socketRenderGame(data) {
     $white.addClass('white').addClass('float').data('index', number);
     $('#whites').append($white);
   }
+}
+
+function clickWhite{
+  if(game.player.isReader){
+    alert('you are the reader, stupid!');
+  }else{
+    var submission = $(this).data('index');
+    socket.emit('whiteSubmission', {game: game, player: player, submission: submission});
+    $('.white').hide();
+  };
 }
