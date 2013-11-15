@@ -51,7 +51,7 @@ function displayCard(number) {
   $('#card')
     .css('background-image', 'url("' + cardUrl + '")')
     .css('height', cardHeight)
-    .css('width', cardWidth + 1)
+    .css('width', cardWidth)
     .css('background-position',  leftPosition + 'px ' + topPosition + 'px');
 }
 
