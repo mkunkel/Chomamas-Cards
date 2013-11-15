@@ -26,6 +26,11 @@ function socketWinningCard(data){
     //}
 }
 
+function gameOver(game){
+  // var winner = game.player.name;
+  // socket.emit('winner', {winner:winner});
+}
+
 function socketReceiveSubmission(data){
   console.log(data);
   var storage = {};
