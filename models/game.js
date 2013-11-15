@@ -18,7 +18,7 @@ var Game = mongoose.Schema({
 
 Game.pre('save', function(next){
   if(!this.whiteCards.length) {
-    var numOfWhite = 300;
+    var numOfWhite = 400;
     var numOfBlack = 100;
     var removeFromBlack = [];
 
